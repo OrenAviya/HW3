@@ -4,7 +4,7 @@
 
 #ifndef HW3_ISORT_H
 #define HW3_ISORT_H
-
+#define ARR_LENGTH 50
 /*
 *this function gets :
 * 1.pointer to a place in array 
