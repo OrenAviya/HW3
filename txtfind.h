@@ -5,4 +5,10 @@
 #ifndef HW3_TXTFIND_H
 #define HW3_TXTFIND_H
 
+#define LINE 256
+#define WORD 30
+int substring(char *str1, char *str2, int start1, int start2, int end1 , int end2);
+int getword(char w[]);
+#include <string.h>
+#include <stdio.h>
 #endif //HW3_TXTFIND_H

@@ -41,7 +41,6 @@ int main() {
     do {
         // Take input
         // and increment count
-        int scan = 0;
         scanf("%d",(arr + count));
         count++;
     } while ( count < ARR_LENGTH);
