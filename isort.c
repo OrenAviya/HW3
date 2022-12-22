@@ -41,12 +41,10 @@ int main() {
     do {
         // Take input
         // and increment count
-        scanf("%d", &arr[count++]);
-        // If '\n' (newline) or '\t' (tab) or ' ' (space) has occurred
-        // or the whole array is filled,
-        // then exit the loop
-        // Otherwise, continue
-    } while (getchar() != '\t' && getchar() != ' ' && getchar() != '\n'&& count < ARR_LENGTH);
+        int scan = 0;
+        scanf("%d",(arr + count));
+        count++;
+    } while ( count < ARR_LENGTH);
 
 
 
