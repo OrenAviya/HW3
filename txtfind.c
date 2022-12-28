@@ -46,6 +46,18 @@ int getword(char* w){
     return count;
 }
 
+int getLine(char *s){
+ int count = 0;
+    char scan = ' ';
+    do {
+        scanf("%c",&scan);
+        *(s+count) = scan;
+        count++;
+    } while (  scan != '\n' && count < LINE);
+    s[count - 1] = '\0';
+    return count;
+}
+
 // return 1 if its able
 int similar (char * s, char* t, int n){
     int len_s = (int) strlen(s);
@@ -74,17 +86,21 @@ int similar (char * s, char* t, int n){
 }
 
     int main(){
-//        char arr[WORD];
-//        getword(arr);
-//        printf("%s\n",arr);
-//        getword(arr);
-//        printf("%s\n",arr);
-        printf("strted\n");
-        char * s = "alon";
-        char * t = "alon";
-        int ans = similar(s,t,1);
-        printf("%d\n" , ans);
-        return 0;
+    //   char arr[WORD];
+        char s[LINE];
+    //    char *s1 = s[0];
+    //    getword(arr);
+        getLine(s);
+        printf("%s\n" , s);
+    //   printf("%s\n",arr);
+    //   getword(arr);
+    //   printf("%s\n",arr);
+        // printf("strted\n");
+        // char * s = "alon";
+        // char * t = "alon";
+        // int ans = similar(s,t,1);
+        // printf("%d\n" , ans);
+        // return 0;
 
         }
 

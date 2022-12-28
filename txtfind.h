@@ -10,6 +10,7 @@
 int substring(char *str1, char *str2, int start1, int start2, int end1 , int end2);
 int getword(char w[]);
 int similar (char * s, char* t, int n);
+int getLine(char * s);
 #include <string.h>
 #include <stdio.h>
 #endif //HW3_TXTFIND_H
