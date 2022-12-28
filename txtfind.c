@@ -45,13 +45,47 @@ int getword(char* w){
     w[count - 1] = '\0';
     return count;
 }
+
+// return 1 if its able
+int similar (char * s, char* t, int n){
+    int len_s = (int) strlen(s);
+    if(n == 0 || ( len_s == strlen(t) ) ){
+        if(strcmp(s,t) == 0 ){
+            return 1;
+        }
+        return 0;
+    }
+
+    char copy [len_s];
+    // lop for removing each char in s at the time and return recursive call without it.
+    for(int position = 0; position < len_s; position++){
+        strcpy(copy , s);
+        // remove the char in position index in copy
+        for(int i = position + 1; i < len_s; i++){
+            copy[i - 1]  = copy[i];
+        }
+        copy[len_s - 1] = '\0';
+        //recursive call with the new string (copy , t, n-1)
+        if(similar(copy,t,n-1) == 1){
+            return 1;
+        }
+    }
+    return 0;
+}
+
     int main(){
-        char arr[WORD];
-        getword(arr);
-        printf("%s\n",arr);
-        getword(arr);
-        printf("%s\n",arr);
-        return 1;
+//        char arr[WORD];
+//        getword(arr);
+//        printf("%s\n",arr);
+//        getword(arr);
+//        printf("%s\n",arr);
+        printf("strted\n");
+        char * s = "alon";
+        char * t = "alon";
+        int ans = similar(s,t,1);
+        printf("%d\n" , ans);
+        return 0;
+
         }
 
 
