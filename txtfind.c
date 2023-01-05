@@ -33,32 +33,52 @@ int substring(char *str1, char *str2, int start1, int start2, int end1 , int end
     return 0;
 
 }
-int getword(char* w){
-    // char w[WORD] ={0};
+
+/*
+getting the next word from the buffer, starting from 'index'
+and checking its length.
+*/
+int getword(char* buffer , int *index , char* w){
     int count = 0;
-    char scan = ' ';
+    char c = buffer[*index];
+
+//    while (c == ' ' || c == '\t' || c == '\n'){
+//        (*index)++;
+//        c = *(buffer + (*index));
+//    }
+
     do {
-        scanf("%c",&scan);
-        *(w + count) = scan;
+        c = buffer[*index];
+        w[count] = c;
+        (*index)++;
         count++;
-    } while ( scan != ' ' && scan != '\t' && scan != '\n' && count < WORD);
-    w[count - 1] = '\0';
+    } while ( c != ' ' && c != '\t' && c != '\n' && count < WORD);
+    w[count -1] = '\0';
     return count;
 }
-
-int getLine(char *s){
+/*
+The function receives a pointer to a string, row and index. The function will return
+the number of characters in the line the pointer is pointing to.
+*/
+int getLine(char *buffer , int * index, char *line){
  int count = 0;
-    char scan = ' ';
+    char c = ' ';
     do {
-        scanf("%c",&scan);
-        *(s+count) = scan;
+        c = *( buffer + (*index) );
+        *(line + count) = c;
+        (*index)++;
         count++;
-    } while (  scan != '\n' && count < LINE);
-    s[count - 1] = '\0';
+    } while (  c != '\n' && count < LINE);
+    line[count] = '\0';
     return count;
 }
 
-// return 1 if its able
+
+/*The function will receive two strings t s and a number n. 
+The function will check if it is possible to get from the string S to the string t
+By putting n characters .
+return 1 if its able , 0 otherwise
+*/ 
 int similar (char * s, char* t, int n){
     int len_s = (int) strlen(s);
     if(n == 0 || ( len_s == strlen(t) ) ){
@@ -84,25 +104,65 @@ int similar (char * s, char* t, int n){
     }
     return 0;
 }
+/*
+The function will receive 2 strings representing a word and a line.
+ It will check if the word is in the line
+*/
+int isWordInLine(char * line, char* word){
 
-    int main(){
-    //   char arr[WORD];
-        char s[LINE];
-    //    char *s1 = s[0];
-    //    getword(arr);
-        getLine(s);
-        printf("%s\n" , s);
-    //   printf("%s\n",arr);
-    //   getword(arr);
-    //   printf("%s\n",arr);
-        // printf("strted\n");
-        // char * s = "alon";
-        // char * t = "alon";
-        // int ans = similar(s,t,1);
-        // printf("%d\n" , ans);
-        // return 0;
+    if( substring(line,word,0,0, (int)strlen(line), (int)strlen(word)) == 1){
+        return 1;
+    }
+return 0;
+}
+
+int main(){
+    char keyword[WORD] = "";
+    char flagArr [2] = "";
+    char buffer[MAX_FILE_LENGTH+1];
+    int index = 0;
+    int endIndex = 0;
+    int scan = 1;
+
+    // Read from the standard input stream until the end of file
+    while ((scan = getchar()) != EOF)
+    {
+        buffer[endIndex] = (char)scan;
+        endIndex++;
+    }
+    buffer[endIndex] = '\0';
+    unsigned long length = strlen(buffer);
+    //getting the first word from the buffer
+    getword(buffer , &index , keyword);
+    //getting a' or 'b', to chose what to print (in string format)
+    getword(buffer , &index , flagArr);
+    char flag = flagArr[0];
+
+    while (index < length) {
+        //printing all the lines in the text with the key-word.
+        if (flag == 'a') {
+            char line [LINE] = "";
+            getLine(buffer, &index, line);
+            if (isWordInLine(line, keyword)) {
+                printf("%s", line);
+            }
+
+            //printing all the word in the text that similar to the key word or have only one letter extra than the key word.
+        } else {
+            char word [WORD] = "";
+            getword(buffer, &index, word);
+            if( similar(word , keyword , 1) ){
+                printf("%s\n" , word);
+            }
 
         }
+    }
+    return 0;
+}
+
+
+
+
 
 
 

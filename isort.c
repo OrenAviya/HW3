@@ -45,15 +45,12 @@ int main() {
         count++;
     } while ( count < ARR_LENGTH);
 
-
-
-    //int arr[50] = {0,2,41,52,74,64,984,19,21,14,409,50,91,7444,67,7232,5322,6,24,7,6,5,2,90,49,9,8,5232313,89,9,8,4,5,6,7,60,2,1,20,1234,5,6,9,8,6,477,12,2,13,124};
 	//sorting the array
 	insertion_sort(arr, ARR_LENGTH);
 
 	print_array(&arr[0], ARR_LENGTH);
-   
-    return 1;
+
+    return 0;
 
 }
 
